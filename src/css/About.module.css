@@ -1,0 +1,956 @@
+/* AboutUs.module.css - FINAL VERIFIED & MOBILE-ENHANCED CODE - FIXED RESPONSIVENESS */
+
+/* ========================================================================= */
+/* BASE STYLES & TYPOGRAPHY */
+/* ========================================================================= */
+
+/* Define CSS Custom Properties (Variables) */
+:root {
+    --color-primary: #174279;
+    --color-accent: #FFC300;
+    --color-text-dark: #2c3e50;
+    --color-text-light: #5d6d7e;
+    --color-background-light: #f7f9fc;
+    --border-radius-lg: 15px;
+    --border-radius-sm: 8px;
+
+    /* NEW: Timeline Colors */
+    --color-timeline-line: #d1d9e2;
+    --color-timeline-dot: var(--color-primary);
+}
+
+.about-us-page-container {
+    margin: 0;
+    /* Poppins must be imported in your global index.html or index.css */
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-text-dark);
+    background-color: #ffffff;
+
+    /* PAGE TRANSITION: Initial state before the component is 'loaded' */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* PAGE TRANSITION: Final state applied by the JavaScript's useEffect hook */
+.about-us-page-container.loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+main {
+    padding: 0;
+    margin: 0 auto;
+}
+
+.section {
+    padding: 80px 5%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.bg-light {
+    background-color: var(--color-background-light);
+    padding: 100px 5%;
+    margin-bottom: 0;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 25px;
+    letter-spacing: -1px;
+    /* Hover Transition */
+    transition: color 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.section-title:hover {
+    color: #1b539c;
+    letter-spacing: -0.5px;
+}
+
+/* Fix the detailed body text to be REGULAR (400) instead of BOLD (700). */
+.section-text {
+    line-height: 1.8;
+    font-size: 1.1rem; 
+    color: var(--color-text-light);
+    margin-bottom: 25px;
+    
+    /* 🎯 FIX APPLIED: Set detailed body text to regular weight (400) */
+    font-weight: 400; 
+    color: var(--color-text-dark); /* Keep the dark color for contrast */
+
+    /* Text Hover Transition */
+    transition: color 0.3s ease;
+}
+
+.section-text:hover {
+    color: var(--color-primary); /* Text color subtle change on hover */
+}
+
+/* Ensure the Lead Paragraph remains REGULAR, as originally intended */
+.lead-paragraph {
+    font-size: 1.45rem; 
+    font-weight: 400; /* Regular weight */
+    color: var(--color-text-dark); 
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+.lead-paragraph:hover {
+    color: #34495e; /* Subtle darker shade on hover */
+}
+
+
+/* ========================================================================= */
+/* 1. HERO SECTION */
+/* ========================================================================= */
+
+.about-us-hero-header {
+    height: 60vh;
+    background-size: cover;
+    background-attachment: scroll;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    background-color: transparent;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(23, 66, 121, 0.75);
+    z-index: 1;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: var(--color-accent);
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.9), 0 0 5px rgba(0, 0, 0, 0.7);
+    margin-bottom: 15px;
+    line-height: 1.05;
+    text-transform: uppercase;
+}
+
+.hero-motto {
+    font-size: 1.6rem;
+    font-style: italic;
+    font-weight: 500;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 1.0);
+    margin-bottom: 20px;
+}
+
+.hero-location {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+
+/* ========================================================================= */
+/* 2. OVERVIEW & MVG SECTION */
+/* ========================================================================= */
+
+.overview-mvg-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: start;
+    padding-bottom: 80px;
+}
+
+/* Overview Visual Element */
+.overview-visual {
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: var(--border-radius-lg);
+    margin: 0 auto 30px auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border: 5px solid #ffffff;
+    /* Image Hover Transition */
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+}
+
+.overview-visual:hover {
+    transform: scale(1.02); /* Slight scale on hover */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+
+/* QUICK FACTS BAR (Card Structure) */
+.quick-facts-bar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+    padding-top: 0;
+    border-top: none;
+    box-shadow: none;
+}
+
+.fact-card-container {
+    background-color: var(--color-background-light);
+    padding: 20px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    /* Card Hover Transition */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-left-color 0.3s ease;
+    border-left: 5px solid var(--color-primary);
+}
+
+.fact-card-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-left-color: var(--color-accent); /* Border color change on hover */
+}
+
+.fact-card-container .fact-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-right: 10px;
+    display: block;
+}
+
+.fact-icon {
+    font-size: 1.6rem;
+    color: var(--color-primary);
+    margin-right: 10px;
+}
+
+.fact-value {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    margin-top: 5px;
+}
+
+.fact-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    margin-top: 5px;
+    line-height: 1.3;
+}
+
+.fact-subtext {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+/* Mission/Vision/Goal Container (NEW GRID) */
+.mvg-container-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .mvg-container-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+}
+
+.mvg-card-item {
+    background: linear-gradient(160deg, var(--color-primary) 0%, #1b539c 100%);
+    border-radius: var(--border-radius-lg);
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    border-left: 8px solid var(--color-accent);
+    /* Card Hover Transition (Enhanced) */
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), border-left-color 0.4s ease;
+}
+
+.mvg-card-item:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+    border-left-color: #ffffff;
+}
+
+.mvg-icon {
+    font-size: 2.2rem;
+    color: var(--color-accent);
+    margin-bottom: 10px;
+    /* Icon Hover Transition */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.4s ease;
+}
+
+.mvg-card-item:hover .mvg-icon {
+    transform: scale(1.1) rotate(-5deg);
+    color: #ffffff;
+}
+
+.mvg-card-item .card-title {
+    font-size: 1.7rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: var(--color-accent);
+}
+
+.mvg-card-item .card-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #f0f4f8;
+}
+
+
+/* ========================================================================= */
+/* 3. HISTORY & LEADERSHIP SHOWCASE */
+/* ========================================================================= */
+
+.history-leadership-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.history-details {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.history-image {
+    min-width: 220px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    border: 5px solid #fff;
+    /* Image Hover Transition */
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.6s ease;
+}
+
+.history-image:hover {
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* History Toggle Button */
+.toggle-history-button {
+    background-color: var(--color-primary);
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 25px;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 2px solid transparent;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.toggle-history-button:hover {
+    background-color: #0d3663;
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* MAGNIFICENT TIMELINE STYLES */
+.history-timeline-container {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0e0e0;
+}
+
+.history-timeline {
+    list-style-type: none;
+    padding: 0 20px;
+    margin: 0;
+    position: relative;
+}
+
+/* Vertical Timeline Line */
+.history-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 45px;
+    width: 3px;
+    background-color: var(--color-timeline-line);
+    z-index: 0;
+    border-radius: 2px;
+}
+
+.timeline-event {
+    margin-bottom: 35px;
+    position: relative;
+    padding-left: 80px;
+    min-height: 50px;
+    /* Item Hover Transition */
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: var(--border-radius-sm);
+}
+
+.timeline-event:hover {
+    background-color: #f0f3f6;
+    padding-left: 85px; /* Slight shift on hover */
+}
+
+/* Circle Dot on the Line (Now holds the icon) */
+.timeline-dot {
+    position: absolute;
+    left: 30px;
+    top: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--color-timeline-dot);
+    border: 3px solid #ffffff;
+    box-shadow: 0 0 0 4px var(--color-accent);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeline-icon {
+    color: #ffffff;
+    font-size: 1.1rem;
+}
+
+.timeline-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.timeline-year-phase {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--color-accent);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.timeline-phase {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+
+.timeline-description {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    margin: 0;
+    line-height: 1.6;
+}
+
+
+/* Leadership Spotlight (Captain Card) */
+.leadership-spotlight .section-title {
+    text-align: left;
+}
+
+.captain-card {
+    background-color: #fff;
+    border-radius: var(--border-radius-lg);
+    padding: 35px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    /* Card Hover Transition */
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+.captain-card:hover {
+    box-shadow: 0 15px 35px rgba(23, 66, 121, 0.2);
+    transform: translateY(-5px);
+}
+
+.captain-photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 6px solid var(--color-primary);
+    /* Image Hover Transition (Enhanced) */
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.5s ease;
+}
+.captain-card:hover .captain-photo {
+    transform: scale(1.08) rotate(2deg);
+    border-color: var(--color-accent);
+}
+
+.captain-name {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--color-primary);
+}
+
+.captain-position {
+    font-size: 1.1rem;
+    font-style: normal;
+    color: var(--color-text-light);
+    margin-bottom: 20px;
+}
+
+.captain-message {
+    font-style: italic;
+    color: #34495e;
+    padding: 20px;
+    background-color: #eef1f4;
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 25px;
+    font-size: 1rem;
+}
+
+.leadership-link {
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    font-weight: 700;
+    padding: 10px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.leadership-link:hover {
+    background-color: #0d3663;
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(1.03);
+}
+
+/* ========================================================================= */
+/* 4. DEDICATED INDUSTRIES SECTION */
+/* ========================================================================= */
+
+.industries-section-full-width {
+    padding: 100px 0;
+    background-color: var(--color-background-light);
+    text-align: center;
+    border-top: 8px solid var(--color-accent);
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.industries-section-full-width .section-title {
+    margin-bottom: 0.5rem;
+}
+
+.industries-section-full-width .section-subtitle {
+    margin-bottom: 2rem;
+    color: var(--color-text-light);
+}
+
+.industries-grid {
+    display: grid;
+    gap: 1.5rem;
+    padding: 0 5%;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* Style for each large industry card */
+.industry-item-large {
+    background: white;
+    padding: 0;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    /* Card Hover Transition */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    border: 1px solid #eef1f4;
+}
+
+.industry-item-large:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(23, 66, 121, 0.15);
+}
+
+.industry-image-large {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    margin-bottom: 0;
+    /* Image Hover Transition */
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.industry-item-large:hover .industry-image-large {
+    transform: scale(1.05);
+}
+
+.industry-info-large {
+    padding: 1.5rem;
+}
+
+.industry-title-large {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.industry-title-large i {
+    color: var(--color-accent);
+    font-size: 1.6rem;
+}
+
+.industry-description {
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+}
+
+
+/* ========================================================================= */
+/* 5. UTILITY GRID */
+/* ========================================================================= */
+
+/* Main Utility Grid (Controls Sub-Villages Card & Gallery Card) */
+.utility-grid-two-columns {
+    display: grid;
+    grid-template-columns: 1fr; /* Default: stack on mobile */
+    gap: 40px;
+    margin-top: 60px;
+    align-items: stretch;
+}
+
+@media (min-width: 993px) {
+    .utility-grid-two-columns {
+        grid-template-columns: 1.5fr 1fr;
+    }
+}
+
+.utility-card {
+    background-color: #fff;
+    border-radius: var(--border-radius-lg);
+    padding: 0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    /* Card Hover Transition */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    height: auto;
+}
+
+@media (min-width: 993px) {
+    .utility-card {
+        height: 100%;
+    }
+}
+
+.utility-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Sub-Villages Card Header Style --- */
+.sub-villages-card-header {
+    background: var(--color-primary);
+    padding: 25px 35px;
+    color: white;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.sub-villages-card-content {
+    padding: 25px 35px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.utility-card .card-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    margin-bottom: 5px;
+    padding-bottom: 0;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.utility-card .card-title i {
+    font-size: 2.2rem;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+/* Style for the card title that doesn't have the primary header (e.g., the Gallery Card) */
+.utility-card:not(.sub-villages-card) .card-title {
+    color: var(--color-primary);
+    padding-bottom: 8px;
+    border-bottom: 3px solid var(--color-accent);
+}
+
+.utility-card:not(.sub-villages-card) .card-title i {
+    color: var(--color-accent);
+}
+
+
+/* --- Sub-Village List Style --- */
+.sub-village-list-improved {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+.sub-village-list-improved li {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: var(--color-text-dark);
+    /* List Item Hover Transition */
+    transition: background-color 0.3s ease, padding-left 0.3s ease, color 0.3s ease;
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: var(--border-radius-sm);
+    display: flex;
+    align-items: center;
+}
+
+.sub-village-list-improved li:hover {
+    color: var(--color-primary);
+    background-color: var(--color-background-light);
+    padding-left: 20px;
+}
+
+.sub-village-list-improved li i {
+    color: var(--color-accent);
+    margin-right: 15px;
+    font-size: 1.1em;
+}
+
+.view-map-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 700;
+    align-self: flex-start;
+    padding: 10px 20px;
+    border: 2px solid var(--color-accent);
+    border-radius: 50px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: auto;
+}
+
+.view-map-link:hover {
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+}
+
+/* Gallery-specific styles to ensure images are visible on mobile */
+.gallery-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 15px 0;
+    flex-grow: 1;
+    margin-bottom: auto;
+}
+
+.gallery-thumb {
+    position: relative;
+    height: 100px;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* Gallery Thumb Hover Transition */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-thumb:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Image within Thumb Hover Transition */
+    transition: opacity 0.3s ease, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.gallery-thumb img:hover {
+    transform: scale(1.15) rotate(1deg);
+}
+
+.view-gallery-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 700;
+    align-self: flex-start;
+    padding: 10px 20px;
+    border: 2px solid var(--color-primary);
+    border-radius: 50px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: auto;
+}
+
+.view-gallery-link:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+/* ========================================================================= */
+/* RESPONSIVENESS */
+/* ========================================================================= */
+
+@media (max-width: 992px) {
+    .overview-mvg-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .history-leadership-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .history-details {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .history-image {
+        width: 100%;
+        max-height: 250px;
+        min-width: auto;
+    }
+
+    .leadership-spotlight .section-title {
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .overview-visual {
+        max-height: 250px;
+        margin: 0 auto 30px auto;
+    }
+}
+
+@media (max-width: 768px) {
+    /* 🎯 FIX APPLIED: Increase Hero height and push the title down to clear the header */
+    .about-us-hero-header {
+        height: 70vh; /* Increased from 60vh for more vertical space */
+    }
+    
+    .hero-title {
+        font-size: 2.5rem; /* Reduced slightly for smaller screens */
+        margin-top: 50px; /* PUSHES TEXT DOWN to clear the fixed navigation header */
+    }
+
+    .hero-motto {
+        font-size: 1.2rem; /* Minor reduction for better fit */
+    }
+
+    .section {
+        padding: 60px 4%;
+    }
+
+    .bg-light {
+        padding: 70px 4%;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+    }
+
+    .lead-paragraph {
+        font-size: 1.25rem;
+    }
+
+    .quick-facts-bar {
+        grid-template-columns: 1fr;
+    }
+
+    .utility-grid-two-columns {
+        gap: 20px;
+    }
+
+    .utility-card {
+        padding: 0;
+    }
+
+    .sub-villages-card-header, .sub-villages-card-content, .gallery-card-content {
+        padding: 20px;
+    }
+
+    .sub-village-list-improved li {
+        font-size: 1rem;
+    }
+
+    /* Timeline adjustments for smaller screens */
+    .history-timeline::before {
+        left: 25px;
+    }
+
+    .timeline-event {
+        padding-left: 60px;
+    }
+
+    .timeline-dot {
+        left: 10px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .timeline-phase {
+        font-size: 1.3rem;
+    }
+
+    .timeline-description {
+        font-size: 0.9rem;
+    }
+
+    .gallery-preview {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .gallery-thumb {
+        flex-basis: 30%;
+        height: 80px;
+    }
+
+    .overview-visual {
+        max-height: 180px;
+        margin: 0 auto 20px auto;
+    }
+}
