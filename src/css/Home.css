@@ -47,6 +47,22 @@ a {
     max-width: 1200px;
     margin: 0 auto;
 }
+.section-title-dark {
+    font-size: 1.9rem;
+    font-weight: 800; /* Extra Bold weight */
+    color: var(--navy-dark); /* Using your new deep Navy color */
+    
+    margin-bottom: 45px; 
+    text-align: left; /* Aligns with the design requested for the news page */
+    
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    
+    /* The distinctive Gold underline accent */
+    border-bottom: 5px solid var(--gold-accent); /* Using your new Gold accent color */
+    display: inline-block; /* Crucial: Makes the border fit the text width */
+    padding-bottom: 8px;
+}
 
 .bg-light {
     background-color: var(--bg-light);
@@ -885,6 +901,9 @@ a {
 /* =========================================
 MOBILE RESPONSIVENESS (<= 768px)
 ========================================= */
+/* =========================================
+MOBILE RESPONSIVENESS (<= 768px)
+========================================= */
 @media (max-width: 768px) {
     /* Global Section Spacing and Text */
     .section-padding {
@@ -897,9 +916,9 @@ MOBILE RESPONSIVENESS (<= 768px)
         margin-bottom: 30px;
     }
 
-    /* CRITICAL FIX: Add padding to main content for fixed header */
+    /* ❌ FIX: Remove the unnecessary padding that creates the white gap. */
     .home-page main {
-        padding-top: 60px; /* Space for the fixed header */
+        padding-top: 0; 
     }
 
     /* 1. HEADER - Enhanced Polish (Navigation Toggle) */
@@ -921,10 +940,10 @@ MOBILE RESPONSIVENESS (<= 768px)
     /* Mobile Menu: Drop-down functionality */
     .header-nav {
         /* Menu is hidden by default (Drop-down) */
-        position: fixed; /* Keep fixed to stay below the fixed header at the top of the viewport */
+        position: fixed; 
         top: 60px; /* Position below the header */
         left: 0;
-        width: 100%; /* Full width for drop-down */
+        width: 100%; 
         height: auto; 
         
         background-color: var(--navy-dark);
@@ -933,35 +952,35 @@ MOBILE RESPONSIVENESS (<= 768px)
         
         /* CRITICAL: Drop-down animation properties */
         max-height: 0;
-        overflow: hidden; /* Hides content when max-height is 0 */
-        transition: max-height 0.5s ease-in-out; /* Smooth transition for drop-down */
+        overflow: hidden; 
+        transition: max-height 0.5s ease-in-out; 
         
         padding-top: 0; 
     }
     
     /* Menu is shown when toggled */
     .header-nav--open {
-        max-height: 500px; /* Set a large enough max-height for content to drop down */
+        max-height: 500px; 
     }
     
     .header-nav .nav-list {
         flex-direction: column;
         gap: 0;
         padding: 10px 20px 20px;
-        align-items: flex-start; /* LEFT ALIGNED */
+        align-items: flex-start; 
     }
     .header-nav .nav-list li {
         width: 100%;
-        text-align: left; /* LEFT ALIGNED */
+        text-align: left; 
     }
     .header-nav .nav-link {
         display: block;
-        padding: 12px 10px; /* Increased padding */
-        font-size: 1.1rem; /* Slightly larger links */
+        padding: 12px 10px; 
+        font-size: 1.1rem; 
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     .header-nav .nav-link:hover {
-        background-color: rgba(255, 195, 0, 0.1); /* Subtle hover background */
+        background-color: rgba(255, 195, 0, 0.1); 
     }
     
     .nav-portal-btn {
@@ -980,10 +999,11 @@ MOBILE RESPONSIVENESS (<= 768px)
         padding: 10px;
     }
     
-    /* 2. HERO SECTION - Balanced Spacing */
+    /* 2. HERO SECTION - CRITICAL FIX */
     .hero-section {
         height: 500px; 
-    }
+        /* 👇👇 CRITICAL FIX: Pulls the element up to sit behind the fixed header */
+        margin-top: -60px; }
     .hero-overlay {
         padding: 20px;
     }
@@ -1010,7 +1030,7 @@ MOBILE RESPONSIVENESS (<= 768px)
         order: -1;
         margin-bottom: 20px;
         min-width: unset;
-        text-align: left; /* Match parent container alignment */
+        text-align: left; 
     }
     .about-map iframe {
         height: 200px;
@@ -1020,7 +1040,7 @@ MOBILE RESPONSIVENESS (<= 768px)
         font-size: 1rem;
     }
     .map-caption {
-        text-align: left; /* Match parent container alignment */
+        text-align: left; 
     }
 
     /* 4. NEWS SECTION */
@@ -1178,10 +1198,10 @@ MOBILE RESPONSIVENESS (<= 768px)
         text-align: left; 
     }
     .footer-brand .header-logo-container {
-        justify-content: flex-start; /* LEFT ALIGNED */
+        justify-content: flex-start; 
     }
     .social-links-footer {
-        justify-content: flex-start; /* LEFT ALIGNED */
+        justify-content: flex-start; 
     }
     .footer-links a {
         padding: 3px 0;
@@ -1190,7 +1210,7 @@ MOBILE RESPONSIVENESS (<= 768px)
     }
     /* Ensure bottom text is also left-aligned */
     .footer-bottom {
-        text-align: left; /* LEFT ALIGNED */
+        text-align: left; 
         padding-top: 15px; 
     }
     .developer-tag {

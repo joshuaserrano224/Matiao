@@ -3,6 +3,9 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import AboutUs from './pages/About'; 
+import Services from './pages/Services';
+import News from './pages/News';
+import Contact from './pages/Contact';
 import Header from './components/Header'; 
 import Footer from './components/Footer'; 
 
@@ -21,6 +24,9 @@ function App() {
                     <Route path='/register' element={<Register />} />
                     <Route path='/login' element={<Login />} />
                     <Route path='/aboutus' element={<AboutUs />} /> 
+                      <Route path='/services' element={<Services />} /> 
+                        <Route path='/news' element={<News />} /> 
+                         <Route path='/contact' element={<Contact />} /> 
                 </Routes>
             </div>
             {/* ------------------------------------------------------------------- */}
